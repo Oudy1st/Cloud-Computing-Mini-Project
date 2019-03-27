@@ -39,9 +39,6 @@ def getAddress(lat,lng):
         elif item["types"][0] == "country":
             country = item["long_name"]
 
-
-
-
     return {"address1":address1,"country":country,"postal_code":postal_code}
 
 
@@ -49,22 +46,6 @@ def hash(input):
     h = blake2b(digest_size=20)
     h.update(str.encode(input))
     return h.hexdigest()
-
-def select(table):
-    fileName = '{}.json'.format(table)
-    with open(fileName) as f:
-        records = json.load(f)
-    return records
-
-def insert(table,new_record):
-    fileName = '{}.json'.format(table)
-    with open(fileName) as f:
-        records = json.load(f)
-    records.append(new_record)
-    with open(fileName, 'w') as f:
-        json.dump(records, f)
-
-    return True
 
 def response(code, message, data = ""):
     response = {
@@ -97,21 +78,6 @@ def check_token(token):
             return { 'is_expire':True, 'message':"token expire" }
         else:
             return { 'is_expire':False, 'message':"" , 'token': json_util.dumps(_token)}
-
-
-# def query(sql):
-#     mycursor = mysql.connection.cursor()
-#     mycursor.execute(sql)
-#     if sql.startswith( 'select' ):
-#         retVal = mycursor.fetchall()
-#     else:
-#         retVal = mycursor.rowcount
-#     end
-#     mysql.connection.close()
-#     return retVal
-
-
-
 
 ############# Heatmap ################
 @app.route('/app/create_app', methods=['POST'])
