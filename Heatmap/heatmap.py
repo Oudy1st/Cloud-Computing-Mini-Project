@@ -80,7 +80,7 @@ def gen_token(user_id):
         "token" : _token,
         "user_id":user_id,
         "create_date" : datetime.datetime.utcnow(),
-        "expire_date" : datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
+        "expire_date" : datetime.datetime.utcnow() + datetime.timedelta(minutes=180)
     }}, True)
 
     return _token
@@ -93,13 +93,11 @@ def check_token(token):
         expire_date = _token['expire_date']
 
         # expire_date = datetime.datetime.strptime(_selected_token['expire_date'], date_format)
-        if expire_date > datetime.datetime.utcnow():
+        if expire_date < datetime.datetime.utcnow():
             return { 'is_expire':True, 'message':"token expire" }
         else:
             return { 'is_expire':False, 'message':"" , 'token': json_util.dumps(_token)}
 
-        #test
-        return { 'is_expire':False, 'message':"" , 'token': json_util.dumps(_token)}
 
 # def query(sql):
 #     mycursor = mysql.connection.cursor()

@@ -8,8 +8,8 @@ docker push gcr.io/${PROJECT_ID}/heatmap:v1
 
 gcloud container clusters create heatmap-cluster --num-nodes=3
 
-kubectl run web-app-server --image=gcr.io/${PROJECT_ID}/heatmap:v1 --port 8080
+kubectl run heatmap-server --image=gcr.io/${PROJECT_ID}/heatmap:v1 --port 8080
 
-kubectl expose deployment web-app-server --type=LoadBalancer --port 80 --target-port 8080
+kubectl expose deployment heatmap-server --type=LoadBalancer --port 80 --target-port 8080
 
-kubectl scale deployment web-app-server --replicas=4
+kubectl scale deployment heatmap-server --replicas=4
