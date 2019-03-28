@@ -74,6 +74,18 @@ sh deploy.sh
 
 Client - iOS
 1. download demo application project.
-2. run it in xcode.
+2. open project in xcode.
+3. edit your serverURL, token and applicationID in "HeatmapService.swift".
+```sh
+hostURL = "your host url"
+header["Authorization"] = "your login token"
+body["app_id"] = "your app id"
+```
+4. edit your app_secret in "HeatmapSession.swift".
+```sh
+let appSecret = "your app secret"
+```
+5. run on your device or simulator.
 
  
+Enjoy!
